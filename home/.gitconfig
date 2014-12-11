@@ -1,0 +1,28 @@
+[user]
+	name = Valerii Vasin
+	email = valerii.vasin@gmail.com
+[color]
+  ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[alias]
+  fa = fetch --all -p
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+[core]
+  excludesfile = ~/.gitignore
+  editor = subl -w
+[apply]
+  whitespace = nowarn
+[format]
+  pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+[branch]
+  autosetuprebase = always
+[push]
+  default = current
+[mergetool]
+	keepBackup = true
