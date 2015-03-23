@@ -10,8 +10,6 @@
   // timeout in seconds between attempts
   var TIMEOUT = 100;
 
-  process.stdin.setEncoding('utf8');
-
   var attempt = 0;
   function vagrantUp() {
     attempt += 1;
@@ -36,9 +34,7 @@
 
     cp.stdout.pipe(process.stdout);
     cp.stderr.pipe(process.stderr);
-    cp.stdin.setEncoding('utf8');
   }
 
-  // getPassword(vagrantUp);
   vagrantUp();
 })();
