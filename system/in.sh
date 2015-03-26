@@ -9,6 +9,9 @@ function IN() {
         routes)
             in_routes;
             ;;
+        grunt_stop)
+            in_grunt_stop;
+            ;;
         *)
             echo "Usage: IN {ant|vagrant_up|routes}"
             ;;
@@ -25,6 +28,10 @@ in_vagrant_up() {
 
 in_routes() {
   vagrant ssh -c "cd /code/in && sudo php app-new/console router:debug"
+}
+
+in_grunt_stop() {
+  ps aux | grep grunt | awk '{ print $2 }' | xargs kill
 }
 
 export -f IN;
