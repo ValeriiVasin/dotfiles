@@ -19,6 +19,9 @@ function IN() {
 }
 
 in_ant() {
+  cd $HOME/Projects/in-solr;
+  git pull;
+  cd -;
   vagrant ssh -c "cd /code/in && sudo ant; cd /code/in-solr && sudo ant;";
 }
 
