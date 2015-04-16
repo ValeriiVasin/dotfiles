@@ -12,8 +12,11 @@ function IN() {
         grunt_stop)
             in_grunt_stop;
             ;;
+        rm_cache)
+            in_rm_cache;
+            ;;
         *)
-            echo "Usage: IN {ant|vagrant_up|routes}"
+            echo "Usage: IN {ant|vagrant_up|routes|rm_cache}"
             ;;
     esac
 }
@@ -35,6 +38,10 @@ in_routes() {
 
 in_grunt_stop() {
   ps aux | grep grunt | awk '{ print $2 }' | xargs kill
+}
+
+in_rm_cache() {
+  vagrant ssh -c "sudo rm -rf /dev/shm/symfony/632636088/cache/"
 }
 
 export -f IN;
