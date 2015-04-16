@@ -2,4 +2,4 @@
 HOOKS_DIR=$(dirname $0)
 GRUNT_CLI=${HOOKS_DIR}/../../node_modules/grunt-cli/bin/grunt
 
-$GRUNT_CLI test && $GRUNT_CLI lint;
+$GRUNT_CLI test:frontend && $GRUNT_CLI lint;
