@@ -59,4 +59,14 @@ gz() {
     printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
+# supposed to be used in conjunction with ack
+#
+# @example
+#   ack headerV1NavigationIconSize -l | replace_text headerV1NavigationIconSize membershipIconSizeMedium
+replace_text() {
+    read filename;
+    replace_expression="s/$1/$2/g";
+    sed -i '' "$replace_expression" $filename
+}
+
 export -f server;
