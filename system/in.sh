@@ -29,7 +29,7 @@ in_ant() {
 }
 
 in_vagrant_up() {
-  sudo node $HOME/dotfiles/scripts/in;
+  sudo node $HOME/dotfiles/scripts/in $1;
 }
 
 in_routes() {

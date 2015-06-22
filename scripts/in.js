@@ -6,9 +6,10 @@
   'use strict';
 
   var exec = require('child_process').exec;
-
   // timeout in seconds between attempts
-  var TIMEOUT = 100;
+  var timeout = process.argv[2] ? Number(process.argv[2]) : 100;
+
+  console.log('Timout between attempts: %d seconds', timeout);
 
   var attempt = 0;
   function vagrantUp() {
@@ -16,7 +17,7 @@
     console.log('Trying to up Vagrant.... Attempt #' + attempt);
 
     var cp = exec('vagrant halt && vagrant up', {
-      timeout: TIMEOUT * 1000
+      timeout: timeout * 1000
     }, function(err) {
       if (err) {
         console.log('[FAILED] ', err.message);
