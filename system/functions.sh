@@ -64,9 +64,10 @@ gz() {
 # @example
 #   ack headerV1NavigationIconSize -l | replace_text headerV1NavigationIconSize membershipIconSizeMedium
 replace_text() {
-    read filename;
-    replace_expression="s/$1/$2/g";
-    sed -i '' "$replace_expression" $filename
+    while read filename; do
+        replace_expression="s/$1/$2/g";
+        sed -i '' "$replace_expression" $filename
+    done
 }
 
 export -f server;
