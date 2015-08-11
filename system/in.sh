@@ -44,4 +44,9 @@ in_rm_cache() {
   vagrant ssh -c "sudo rm -rf /dev/shm/symfony/632636088/cache/"
 }
 
+# update solr, remove cache, make request to page to create a cache again
+in_update() {
+  in_ant && in_rm_cache && wget -q --spider internations.dev
+}
+
 export -f IN;
