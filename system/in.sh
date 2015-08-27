@@ -1,26 +1,3 @@
-function IN() {
-  case "$1" in
-        ant)
-            in_ant
-            ;;
-        vagrunt_up)
-            in_vagrant_up;
-            ;;
-        routes)
-            in_routes;
-            ;;
-        grunt_stop)
-            in_grunt_stop;
-            ;;
-        rm_cache)
-            in_rm_cache;
-            ;;
-        *)
-            echo "Usage: IN {ant|vagrant_up|routes|rm_cache}"
-            ;;
-    esac
-}
-
 in_ant() {
   cd $HOME/Projects/in-solr;
   git pull;
@@ -52,6 +29,3 @@ in_memcached_restart() {
 in_update() {
   in_ant && in_rm_cache && in_memcached_restart && wget -q --spider internations.dev
 }
-
-
-export -f IN;
