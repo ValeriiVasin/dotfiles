@@ -70,4 +70,29 @@ replace_text() {
     done
 }
 
+# Open project folder
+project() {
+    cd $HOME/Projects/$1;
+}
+
+# connect to server and open project directory
+# Example:
+#
+# - Open remote directory of "charts" project
+#   project_remote charts
+#
+# - Open remote directory of <current folder name> project
+#   project_remote
+project_remote() {
+    local project="$1";
+
+    if [ -z "$project" ]; then
+        project="$(basename $(pwd))";
+    fi
+
+    ssh do -t "cd /var/www/$project/current; bash --login";
+}
+
+
+
 export -f server;
