@@ -1,6 +1,6 @@
 [user]
-	name = Valerii Vasin
-	email = valerii.vasin@gmail.com
+  name = Valerii Vasin
+  email = valerii.vasin@gmail.com
 [color]
   ui = auto
   branch = auto
@@ -24,5 +24,7 @@
   autosetuprebase = always
 [push]
   default = current
+[pull]
+  rebase = true
 [mergetool]
 	keepBackup = true
