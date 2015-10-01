@@ -21,11 +21,16 @@ in_rm_cache() {
   vagrant ssh -c "sudo rm -rf /dev/shm/symfony/632636088/cache/"
 }
 
-in_memcached_restart() {
-  vagrant ssh -c "sudo /etc/init.d/memcached restart"
+in_services_restart() {
+  vagrant ssh -c "sudo /etc/init.d/nginx restart &&\
+                  sudo /etc/init.d/php5-fpm restart &&\
+                  sudo /etc/init.d/rabbitmq-server restart &&\
+                  sudo /etc/init.d/redis-server restart &&\
+                  sudo /etc/init.d/tomcat6 restart &&\
+                  sudo /etc/init.d/mysql restart"
 }
 
 # update solr, remove cache, restart memcached, make request to page to create a cache again
 in_update() {
-  in_ant && in_rm_cache && in_memcached_restart && wget -q --spider internations.dev
+  in_ant && in_rm_cache && in_services_restart && wget -q --spider internations.dev
 }
