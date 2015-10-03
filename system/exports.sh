@@ -22,4 +22,7 @@ export EDITOR='subl'
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
+# rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+
 export NODE_ENV=development
