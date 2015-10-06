@@ -21,6 +21,17 @@ in_rm_cache() {
   vagrant ssh -c "sudo rm -rf /dev/shm/symfony/632636088/cache/"
 }
 
+in_solr() {
+  # Run solr import for everything
+  vagrant ssh -c "cd /code/in && sudo php app-new/console search:dataimport fullimport all --clean=1"
+
+  # Check status
+  while [ "$(vagrant ssh -c 'cd /code/in && sudo php app-new/console search:dataimport status  all' | grep busy | wc -l)" -ne "0" ]; do
+    echo "Waiting for solr import to finish... $result"
+    sleep 10;
+  done
+}
+
 in_services_restart() {
   vagrant ssh -c "sudo /etc/init.d/nginx restart &&\
                   sudo /etc/init.d/php5-fpm restart &&\
