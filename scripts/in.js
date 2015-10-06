@@ -17,7 +17,10 @@
     console.log('Trying to up Vagrant.... Attempt #' + attempt);
 
     var cp = exec('vagrant halt && vagrant up', {
-      timeout: timeout * 1000
+      timeout: timeout * 1000,
+
+      // set max buffer to 500KB. Default (200KB) is not enough to node update stdout
+      maxBuffer: 1024 * 500
     }, function(err) {
       if (err) {
         console.log('[FAILED] ', err.message);
