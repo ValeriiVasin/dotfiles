@@ -21,9 +21,20 @@ in_rm_cache() {
   vagrant ssh -c "sudo rm -rf /dev/shm/symfony/632636088/cache/"
 }
 
+# Examples
+# in_solr; // delta import of everything
+# in_solr calendar; // delta import of calendar
+# in_solr calendar,users --fullimport; // full import for calendar and users cores
 in_solr() {
   # what to import
   what=${1:-"all"}
+
+  # import type
+  type="deltaimport"
+
+  if [[ "$*" == *fullimport* ]]; then
+    type="fullimport"
+  fi
 
   echo "Solr import: $what";
 
