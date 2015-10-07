@@ -26,24 +26,34 @@ in_rm_cache() {
 # in_solr calendar; // delta import of calendar
 # in_solr calendar,users --fullimport; // full import for calendar and users cores
 in_solr() {
-  # what to import
-  what=${1:-"all"}
+  local what;
+  local import_type;
 
-  # import type
-  type="deltaimport"
+  # --fullimport option was used as first argument
+  if [[ "$1" == "--fullimport" ]]; then
+    what=${2:-"all"};
+    import_type="fullimport";
+  else
+    # first argument - what to import;
+    # second argument - import type
+    what=${1:-"all"};
 
-  if [[ "$*" == *fullimport* ]]; then
-    type="fullimport"
+    if [[ "$2" == "--fullimport" ]]; then
+      import_type="fullimport";
+    else
+      import_type="deltaimport";
+    fi
   fi
 
   echo "Solr import: $what";
+  echo "Type: $import_type";
 
   # Run solr import for everything
-  vagrant ssh -c "cd /code/in && sudo php app-new/console search:dataimport fullimport $what --clean=1"
+  vagrant ssh -c "cd /code/in && sudo php app-new/console search:dataimport $import_type $what --clean=1";
 
   # Check status
-  while [ "$(vagrant ssh -c 'cd /code/in && sudo php app-new/console search:dataimport status  $what' | grep busy | wc -l)" -ne "0" ]; do
-    echo "Waiting for solr import to finish... $result"
+  while [ "$(vagrant ssh -c 'cd /code/in && sudo php app-new/console search:dataimport status $what' | grep busy | wc -l)" -ne "0" ]; do
+    echo "Waiting for solr import to finish... $result";
     sleep 10;
   done
 
