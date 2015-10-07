@@ -22,14 +22,21 @@ in_rm_cache() {
 }
 
 in_solr() {
+  # what to import
+  what=${1:-"all"}
+
+  echo "Solr import: $what";
+
   # Run solr import for everything
-  vagrant ssh -c "cd /code/in && sudo php app-new/console search:dataimport fullimport all --clean=1"
+  vagrant ssh -c "cd /code/in && sudo php app-new/console search:dataimport fullimport $what --clean=1"
 
   # Check status
-  while [ "$(vagrant ssh -c 'cd /code/in && sudo php app-new/console search:dataimport status  all' | grep busy | wc -l)" -ne "0" ]; do
+  while [ "$(vagrant ssh -c 'cd /code/in && sudo php app-new/console search:dataimport status  $what' | grep busy | wc -l)" -ne "0" ]; do
     echo "Waiting for solr import to finish... $result"
     sleep 10;
   done
+
+  echo "Solr import done: $what";
 }
 
 in_services_restart() {
