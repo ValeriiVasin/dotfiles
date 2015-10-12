@@ -66,6 +66,7 @@ in_services_restart() {
                   sudo /etc/init.d/rabbitmq-server restart &&\
                   sudo /etc/init.d/redis-server restart &&\
                   sudo /etc/init.d/tomcat6 restart &&\
+                  sudo /etc/init.d/memcached restart &&\
                   sudo /etc/init.d/mysql restart"
 }
 
