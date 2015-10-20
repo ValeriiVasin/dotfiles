@@ -74,3 +74,9 @@ in_services_restart() {
 in_update() {
   in_ant && in_rm_cache && in_services_restart && wget -q --spider internations.dev
 }
+
+# in_jira INSTART-367
+in_jira() {
+  local ticket="$1";
+  open "https://issues.internations.org/browse/$ticket"
+}
