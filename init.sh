@@ -3,7 +3,7 @@
 DROPBOX_FOLDER="$HOME/Dropbox"
 DOTFILES_FOLDER="$HOME/dotfiles"
 
-source $DOTFILES_FOLDER/bin/brew.sh
+source $DOTFILES_FOLDER/init/brew.sh
 
 echo "Installing npm packages"
 npm install -g npm@latest jshint grunt-cli gulp
@@ -13,10 +13,7 @@ for file in $(find $DOTFILES_FOLDER/home -type f); do
   [ -r "$file" ] && ln -sf $file "$HOME/$(basename $file)"
 done
 
-echo "Making alias for sublime text..."
-mkdir -p $HOME/bin
-ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" $HOME/bin/subl
-
+# SUBLIME
 echo "Linking sublime packages"
 cd "$HOME/Library/Application Support/Sublime Text 3"
 rm -r Installed\ Packages

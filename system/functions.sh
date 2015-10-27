@@ -93,6 +93,8 @@ project_remote() {
     ssh do -t "cd /var/www/$project/current; bash --login";
 }
 
-
+dotfiles() {
+    cd $DOTFILES_FOLDER;
+}
 
 export -f server;
