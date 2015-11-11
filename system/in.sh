@@ -5,10 +5,6 @@ in_ant() {
   vagrant ssh -c "cd /code/in && sudo ant; cd /code/in-solr && sudo ant;";
 }
 
-in_vagrant_up() {
-  sudo node $HOME/dotfiles/scripts/in $1;
-}
-
 in_routes() {
   vagrant ssh -c "cd /code/in && sudo php app-new/console router:debug"
 }
@@ -80,3 +76,20 @@ in_jira() {
   local ticket="$1";
   open "https://issues.internations.org/browse/$ticket"
 }
+
+# Replaces literal in require calls
+# in_require_replace collection/collection collection/collection.ex
+in_require_replace() {
+  local what="$1";
+  local to="$2";
+
+  jscodeshift app-new/ -t $DOTFILES_FOLDER/codemon/require-replace.js --from $what --to $to;
+}
+
+in_vagrant_up() {
+  local timeout="$1";
+  sudo $DOTFILES_FOLDER/bin/in-vagrant-up $timeout
+}
+
+# allow use it in sub-processes [for in-mv]
+export -f in_require_replace;

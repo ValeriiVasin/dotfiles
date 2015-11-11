@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+'use strict';
+
+/**
+ * Command-line replacing. Should be used with ack / find and other utilities that provide list of files
+ *
+ * @example
+ * ack component/some -l | js-replace --replace component/some --to component/other
+ */
+
+let argv = require('minimist')(process.argv);
+let fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+process.stdin.on('data', (data) => {
+  let files = data.trim().split('\n').forEach((filepath) => {
+    filepath = filepath.trim();
+
+    let content = fs.readFileSync(filepath, { encoding: 'utf-8' });
+
+    content = content.replace(new RegExp(argv.replace, 'g'), argv.to);
+
+    fs.writeFileSync(filepath, content);
+  });
+});

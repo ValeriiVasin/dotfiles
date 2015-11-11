@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+/**
+ * in-mv bundle/start/component/info_card_connect.js bundle/start/component/onboarding/view/task_connect.js
+ */
+
+ // TODO: Allow migrate folders
+ // TODO: Special case for controllers - replace js_bootstrap_controller + fix controller config
+ // TODO: Special case: some old requires are inside the markup
+ // TODO: Allow migrate other bundles (read from .yml config)
+ // TODO: Move specs to be same structured as js-files
+ // TODO: Move mocks to be same structured as js-files + replace mock usages
+ // TODO: Think about fixtures (possibly)
+
+'use strict';
+
+(() => {
+const path = require('path');
+const fs = require('fs');
+const _exec = require('child_process').execSync;
+
+let exec = (command) => {
+  console.log('executing...', command);
+  let result = _exec(command, { encoding: 'utf-8' });
+};
+
+const PROJECT_FOLDER = path.resolve(process.env.HOME, 'Projects/in');
+const LAYOUT_FOLDER = path.resolve(PROJECT_FOLDER, 'app-new/src/InterNations/Bundle/LayoutBundle/Resources/public/frontend/js')
+
+let from = process.argv[2];
+let to = process.argv[3];
+
+// check allowed files
+let isScript = /\.js$/.test(from);
+let isTemplate = /\.tmpl$/.test(from);
+
+if (!isScript && !isTemplate) {
+  throw new Error(`Only .js and .tmpl files are allowed`);
+}
+
+let fromFile = path.resolve(LAYOUT_FOLDER, from);
+let toFile = path.resolve(LAYOUT_FOLDER, to);
+
+// restrict for files only
+if (!fs.existsSync(fromFile)) {
+  throw new Error(`File does not exist... ${fromFile}`);
+}
+
+// move file
+exec(`mkdir -p ${path.dirname(toFile)}`);
+exec(`mv ${fromFile} ${toFile}`);
+
+let doRequireReplace = (from, to) => {
+  exec(`in_require_replace ${from} ${to}`);
+};
+
+if (isTemplate) {
+  doRequireReplace(from, to);
+  return;
+}
+
+// replacing for js
+let fromWithoutExtension = from.slice(0, -3);
+let toWithoutExtension = to.slice(0, -3);
+doRequireReplace(fromWithoutExtension, toWithoutExtension);
+
+}());
+
+
