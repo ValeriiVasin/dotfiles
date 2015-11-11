@@ -4,11 +4,9 @@ DROPBOX_FOLDER="$HOME/Dropbox"
 DOTFILES_FOLDER="$HOME/dotfiles"
 
 source $DOTFILES_FOLDER/init/brew.sh
+source $DOTFILES_FOLDER/init/npm.sh
 
-echo "Installing npm packages"
-npm install -g npm@latest jshint grunt-cli gulp
-
-echo "Linking files to home folder"
+echo "Linking files to home folder..."
 for file in $(find $DOTFILES_FOLDER/home -type f); do
   [ -r "$file" ] && ln -sf $file "$HOME/$(basename $file)"
 done
@@ -23,7 +21,6 @@ ln -s "$DROPBOX_FOLDER/Shared/SublimeText3/Packages"
 
 # SSH
 mkdir -p $HOME/.ssh
-# @TODO create ssh keys if not exist
 if [ ! -f "$HOME/.ssh/id_rsa.pub" ]; then
   echo "SSH key does not exist. Generating it..."
   ssh-keygen -t rsa -C "valerii.vasin@gmail.com"
