@@ -1,4 +1,5 @@
 export DOTFILES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+export PROJECTS_FOLDER="$HOME/Projects"
 
 export ARCHFLAGS="-arch x86_64"
 

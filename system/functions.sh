@@ -72,7 +72,7 @@ replace_text() {
 
 # Open project folder
 project() {
-    cd $HOME/Projects/$1;
+    cd "$PROJECTS_FOLDER/$1";
 }
 
 # connect to server and open project directory
