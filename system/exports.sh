@@ -2,12 +2,9 @@ export DOTFILES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd
 export DROPBOX_FOLDER="$HOME/Dropbox"
 export PROJECTS_FOLDER="$HOME/Projects"
 
+export PATH="$DOTFILES_FOLDER/bin:$PATH"
+
 export ARCHFLAGS="-arch x86_64"
-
-export PATH="$HOME/bin:$DOTFILES_FOLDER/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:.:$PATH"
-
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
