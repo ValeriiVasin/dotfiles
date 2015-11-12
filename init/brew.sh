@@ -1,12 +1,21 @@
 #!/usr/bin/env sh
 
+# Make sure we’re using the latest Homebrew.
+brew update
+
+# Upgrade any already-installed formulae.
+brew upgrade --all
+
 packages=(
   ack
-  bash-completion
+  bash-completion2
   git
   node
+  openssl
   ssh-copy-id
+  tree
   wget
+  youtube-dl
 )
 
 # @TODO check if already installed
@@ -20,19 +29,33 @@ for package in "${packages[@]}"; do
   brew install $package
   echo "$package successfull installed"
 done
-brew install casperjs --devel
+# brew install casperjs --devel
 
 # Casks
 brew install caskroom/cask/brew-cask
 casks=(
+  calibre
+  chitchat
   firefox
+  flickr-uploadr
   gitx
   google-chrome
+  imageoptim
   iterm2
+  messenger
   opera
+  opera
+  send-to-kindle
+  sequel-pro
+  skitch
   skitch
   skype
+  slack
+  steam
+  telegram
+  trello-x
   tunnelbear
+  utorrent
   virtualbox
   vlc
 )

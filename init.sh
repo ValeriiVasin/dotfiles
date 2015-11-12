@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
-DROPBOX_FOLDER="$HOME/Dropbox"
-DOTFILES_FOLDER="$HOME/dotfiles"
+CURRENT_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+
+# use exports
+source $CURRENT_FOLDER/system/exports.sh
 
 source $DOTFILES_FOLDER/init/brew.sh
 source $DOTFILES_FOLDER/init/npm.sh

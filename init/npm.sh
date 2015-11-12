@@ -2,10 +2,12 @@
 
 packages=(
   eslint
-  jshint
-  jscs
   grunt-cli
   gulp
+  jscs
+  jshint
+  live-server
+  pm2
 )
 
 echo "Installing globally available npm packages..."

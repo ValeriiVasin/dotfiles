@@ -1,4 +1,5 @@
 export DOTFILES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+export DROPBOX_FOLDER="$HOME/Dropbox"
 export PROJECTS_FOLDER="$HOME/Projects"
 
 export ARCHFLAGS="-arch x86_64"
@@ -19,7 +20,7 @@ export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
 # favorite editor
-export EDITOR='subl'
+export EDITOR="subl"
 
 # Prefer US English and use UTF-8
 export LC_ALL="en_US.UTF-8"
