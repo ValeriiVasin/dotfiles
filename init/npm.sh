@@ -8,6 +8,7 @@ packages=(
   jshint
   live-server
   pm2
+  browserify
 )
 
 echo "Installing globally available npm packages..."
