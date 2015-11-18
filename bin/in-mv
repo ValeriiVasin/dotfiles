@@ -12,14 +12,19 @@
  // TODO: Move mocks to be same structured as js-files + replace mock usages
  // TODO: Think about fixtures (possibly)
 
+/**
+ * Dependencies:
+ * - ack
+ * - npm global: jscodeshift
+ */
+
 'use strict';
 
-(() => {
 const path = require('path');
 const fs = require('fs');
 const _exec = require('child_process').execSync;
 
-let exec = (command) => {
+const exec = (command) => {
   console.log('executing...', command);
   let result = _exec(command, { encoding: 'utf-8' });
 };
@@ -27,43 +32,59 @@ let exec = (command) => {
 const PROJECT_FOLDER = path.resolve(process.env.HOME, 'Projects/in');
 const LAYOUT_FOLDER = path.resolve(PROJECT_FOLDER, 'app-new/src/InterNations/Bundle/LayoutBundle/Resources/public/frontend/js')
 
+// METHODS
+
+const isScript = (file) => /\.js$/.test(file);
+
+const isTemplate = (file) => /\.tmpl$/.test(from);
+
+/**
+ * Replaces requires calls in *.js files using jscodeshift
+ * @param  {String} from What to replace
+ * @param  {String} to   What to replace for
+ */
+const doRequireReplace = (from, to) => {
+  exec(`jscodeshift app-new/ -t $DOTFILES_FOLDER/codemon/require-replace.js --from ${from} --to ${to}`);
+};
+
+/**
+ * Move the file
+ *
+ * @param  {String} from From file relative to the Layout Folder
+ * @param  {[type]} to   To file relative to the Layout Folder
+ * @return {[type]}      [description]
+ */
+const moveFile = (from, to) => {
+  let fromFile = path.resolve(LAYOUT_FOLDER, from);
+  let toFile = path.resolve(LAYOUT_FOLDER, to);
+
+  // restrict for files only
+  if (!fs.existsSync(fromFile)) {
+    throw new Error(`File does not exist... ${fromFile}`);
+  }
+
+  // move file
+  exec(`mkdir -p ${path.dirname(toFile)}`);
+  exec(`mv ${fromFile} ${toFile}`);
+
+  if (isTemplate(from)) {
+    doRequireReplace(from, to);
+    return;
+  }
+
+  // replacing for js
+  let fromWithoutExtension = from.slice(0, -3);
+  let toWithoutExtension = to.slice(0, -3);
+  doRequireReplace(fromWithoutExtension, toWithoutExtension);
+};
+
+// RUN
 let from = process.argv[2];
 let to = process.argv[3];
 
-// check allowed files
-let isScript = /\.js$/.test(from);
-let isTemplate = /\.tmpl$/.test(from);
-
-if (!isScript && !isTemplate) {
-  throw new Error(`Only .js and .tmpl files are allowed`);
+if (!isScript(from) && !isTemplate(from)) {
+  throw new Error('Only .js and .tmpl files are allowed');
 }
 
-let fromFile = path.resolve(LAYOUT_FOLDER, from);
-let toFile = path.resolve(LAYOUT_FOLDER, to);
-
-// restrict for files only
-if (!fs.existsSync(fromFile)) {
-  throw new Error(`File does not exist... ${fromFile}`);
-}
-
-// move file
-exec(`mkdir -p ${path.dirname(toFile)}`);
-exec(`mv ${fromFile} ${toFile}`);
-
-let doRequireReplace = (from, to) => {
-  exec(`in_require_replace ${from} ${to}`);
-};
-
-if (isTemplate) {
-  doRequireReplace(from, to);
-  return;
-}
-
-// replacing for js
-let fromWithoutExtension = from.slice(0, -3);
-let toWithoutExtension = to.slice(0, -3);
-doRequireReplace(fromWithoutExtension, toWithoutExtension);
-
-}());
-
+moveFile(from, to);
 
