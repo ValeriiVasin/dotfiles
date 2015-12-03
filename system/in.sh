@@ -10,7 +10,7 @@ in_routes() {
 }
 
 in_grunt_stop() {
-  ps aux | grep grunt | awk '{ print $2 }' | xargs kill
+  pkill grunt;
 }
 
 in_rm_cache() {
