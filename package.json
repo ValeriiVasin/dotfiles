@@ -1,0 +1,22 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "```bash curl https://raw.githubusercontent.com/ValeriiVasin/dotfiles/master/install.sh | sh ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValeriiVasin/dotfiles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValeriiVasin/dotfiles/issues"
+  },
+  "homepage": "https://github.com/ValeriiVasin/dotfiles#readme",
+  "dependencies": {
+    "glob": "^6.0.1"
+  }
+}

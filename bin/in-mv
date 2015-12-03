@@ -16,6 +16,7 @@
  * Dependencies:
  * - ack
  * - npm global: jscodeshift
+ * - npm module "glob"
  */
 
 'use strict';
@@ -24,12 +25,15 @@ const path = require('path');
 const fs = require('fs');
 const _exec = require('child_process').execSync;
 
+const glob = require('glob');
+
 const exec = (command) => {
   console.log('executing...', command);
   let result = _exec(command, { encoding: 'utf-8' });
 };
 
 const PROJECT_FOLDER = path.resolve(process.env.HOME, 'Projects/in');
+const APP_FOLDER = path.resolve(PROJECT_FOLDER, 'app-new');
 const LAYOUT_FOLDER = path.resolve(PROJECT_FOLDER, 'app-new/src/InterNations/Bundle/LayoutBundle/Resources/public/frontend/js')
 
 // METHODS
@@ -40,21 +44,87 @@ const isTemplate = (file) => /\.tmpl$/.test(from);
 
 /**
  * Replaces requires calls in *.js files using jscodeshift
- * @param  {String} from What to replace
- * @param  {String} to   What to replace for
+ * @param  {String} from What to replace (without extension), e.g. service/cookie_storage
+ * @param  {String} to   What to replace for (without extension), e.g. service/cookie
  */
 const doRequireReplace = (from, to) => {
-  exec(`jscodeshift app-new/ -t $DOTFILES_FOLDER/codemon/require-replace.js --from ${from} --to ${to}`);
+  exec(`jscodeshift ${APP_FOLDER} -t $DOTFILES_FOLDER/codemon/require-replace.js --from ${from} --to ${to}`);
+};
+
+const doMockReplace = (from, to) => {
+}
+
+/**
+ * Replace occurrences inside the twig files
+ * @param  {String} from Replace from
+ * @param  {String} to   Replace to
+ * @return {Promise}     Promise that will be resolved when done
+ */
+const doReplace = (pattern, from, to) => {
+  return new Promise((resolve, reject) => {
+    glob(pattern, (err, files) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(doTextReplace(files, from, to));
+    });
+  });
+};
+
+/**
+ * Replace quoted occurances in files
+ *
+ * @param  {String[]} files Files paths
+ * @param  {String} from    String to replace in file
+ * @param  {String} to      String replace to
+ * @return {String[]}       Files in which replacement was done
+ */
+const doTextReplace = (files, from, to) => {
+  if (!Array.isArray(files)) {
+    files = [files];
+  }
+
+  let regexp = new RegExp(`(['"])${from}\\1`, 'g');
+  let result = [];
+
+  files.forEach((file) => {
+    let content = fs.readFileSync(file, { encoding: 'utf8' });
+    let replacedContent = content.replace(regexp, `$1${to}$1`);
+
+    if (content !== replacedContent) {
+      fs.writeFileSync(file, replacedContent, { encoding: 'utf8' });
+      result.push(file);
+    }
+  });
+
+  return result;
 };
 
 /**
  * Move the file
  *
  * @param  {String} from From file relative to the Layout Folder
- * @param  {[type]} to   To file relative to the Layout Folder
- * @return {[type]}      [description]
+ * @param  {String} to   To file relative to the Layout Folder
+ *
+ * @example
+ *
+ *   moveFile('view/modal', 'component/modal/modal');
  */
 const moveFile = (from, to) => {
+  if (!path.extname(from)) {
+    from += '.js';
+  }
+
+  if (!path.extname(to)) {
+    to += '.js';
+  }
+
+  if (!isScript(from) && !isTemplate(from)) {
+    throw new Error('Only .js and .tmpl files are allowed');
+  }
+
   let fromFile = path.resolve(LAYOUT_FOLDER, from);
   let toFile = path.resolve(LAYOUT_FOLDER, to);
 
@@ -75,16 +145,19 @@ const moveFile = (from, to) => {
   // replacing for js
   let fromWithoutExtension = from.slice(0, -3);
   let toWithoutExtension = to.slice(0, -3);
+
   doRequireReplace(fromWithoutExtension, toWithoutExtension);
+
+  // do replace in twig|php|json files
+  // PHP: app-new/src/InterNations/Bundle/DrupalIntegrationBundle/View/ViewModel/Article.php contains inlined JS
+  // JSON: app-new/config/config_prod_frontend_requirejs_optimizer.json contains modules config
+  doReplace('app-new/**/*.@(html.twig|php|json)', fromWithoutExtension, toWithoutExtension);
+
+  doMockReplace(fromWithoutExtension, toWithoutExtension);
 };
 
 // RUN
 let from = process.argv[2];
 let to = process.argv[3];
 
-if (!isScript(from) && !isTemplate(from)) {
-  throw new Error('Only .js and .tmpl files are allowed');
-}
-
 moveFile(from, to);
-
