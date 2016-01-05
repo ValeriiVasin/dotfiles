@@ -8,7 +8,7 @@ brew upgrade --all
 
 packages=(
   ack
-  bash-completion2
+  bash-completion
   git
   node
   openssl
@@ -65,3 +65,7 @@ for cask in "${casks[@]}"; do
   brew cask install $cask
   echo "$cask successfull installed"
 done
+
+# install sublime text 3
+brew tap caskroom/versions
+brew cask install sublime-text3
