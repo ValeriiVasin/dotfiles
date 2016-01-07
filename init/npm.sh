@@ -9,6 +9,7 @@ packages=(
   live-server
   pm2
   browserify
+  db-migrate
 )
 
 echo "Installing globally available npm packages..."
