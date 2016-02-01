@@ -36,7 +36,7 @@ ln -sf $DROPBOX_FOLDER/dotfiles/ssh-config $HOME/.ssh/config
 echo 'Installing rvm, ruby and capistrano'
 curl -sSL https://get.rvm.io | bash -s stable
 rvm install 2.2.1
-rvm --default use 2.1.1
+rvm --default use 2.2.1
 
 # Ruby gems
 gem install capistrano
