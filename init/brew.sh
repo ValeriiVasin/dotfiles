@@ -40,6 +40,7 @@ casks=(
   flickr-uploadr
   gitx
   google-chrome
+  google-chrome-canary
   imageoptim
   iterm2
   messenger
