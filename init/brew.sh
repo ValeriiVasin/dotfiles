@@ -45,13 +45,13 @@ casks=(
   iterm2
   messenger
   opera
-  opera
   send-to-kindle
   sequel-pro
   skitch
   skitch
   skype
   slack
+  sourcetree
   steam
   telegram
   trello-x

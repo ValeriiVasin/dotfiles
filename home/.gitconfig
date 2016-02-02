@@ -14,7 +14,7 @@
   co = checkout
   br = branch
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore_global
   editor = subl -w
 [apply]
   whitespace = nowarn
@@ -28,3 +28,8 @@
   rebase = true
 [mergetool]
   keepBackup = true
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+  cmd = /Users/vvasin/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
