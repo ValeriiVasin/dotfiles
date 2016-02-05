@@ -10,6 +10,7 @@ packages=(
   pm2
   browserify
   db-migrate
+  typescript
 )
 
 echo "Installing globally available npm packages..."
