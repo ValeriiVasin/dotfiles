@@ -34,6 +34,7 @@ done
 # Casks
 brew install caskroom/cask/brew-cask
 casks=(
+  atom
   calibre
   chitchat
   firefox

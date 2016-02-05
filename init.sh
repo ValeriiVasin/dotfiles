@@ -7,6 +7,7 @@ source $CURRENT_FOLDER/system/exports.sh
 
 source $DOTFILES_FOLDER/init/brew.sh
 source $DOTFILES_FOLDER/init/npm.sh
+source $DOTFILES_FOLDER/init/atom.sh
 
 echo "Linking files to home folder..."
 for file in $(find $DOTFILES_FOLDER/home -type f); do
