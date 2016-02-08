@@ -3,3 +3,4 @@ apm install minimap
 apm install git-plus
 apm install linter
 apm install editorconfig
+apm install project-manager
