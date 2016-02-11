@@ -17,13 +17,10 @@ export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
 # favorite editor
-export EDITOR="subl"
+export EDITOR="atom"
 
 # Prefer US English and use UTF-8
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
-
-# rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
 
 export NODE_ENV=development
