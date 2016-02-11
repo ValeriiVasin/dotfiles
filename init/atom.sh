@@ -1,6 +1,23 @@
-# atom packages
-apm install minimap
-apm install git-plus
-apm install linter
-apm install editorconfig
-apm install project-manager
+#!/usr/bin/env sh
+
+packages=(
+  minimap
+  git-plus
+  linter
+  editorconfig
+  project-manager
+  atom-beautify
+  docblockr
+  sort-lines
+  language-haml
+)
+
+for package in "${packages[@]}"; do
+  if [[ ! -d "$HOME/.atom/packages/$package" ]]
+  then
+    echo "Installing $package..."
+    apm install $package
+  else
+    echo "Package '$package' is already installed..."
+  fi
+done

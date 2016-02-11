@@ -11,6 +11,8 @@ packages=(
   browserify
   db-migrate
   typescript
+  jasmine
+  npm-check-updates
 )
 
 echo "Installing globally available npm packages..."
