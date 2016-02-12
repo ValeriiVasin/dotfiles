@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 packages=(
+  n
   eslint
   grunt-cli
   gulp
