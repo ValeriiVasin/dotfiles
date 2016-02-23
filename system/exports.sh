@@ -2,7 +2,7 @@ export DOTFILES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd
 export DROPBOX_FOLDER="$HOME/Dropbox"
 export PROJECTS_FOLDER="$HOME/Projects"
 
-export PATH="./node_modules/.bin:$DOTFILES_FOLDER/bin:$PATH"
+export PATH="$DOTFILES_FOLDER/bin:$PATH"
 
 export ARCHFLAGS="-arch x86_64"
 
