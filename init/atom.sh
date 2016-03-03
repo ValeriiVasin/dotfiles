@@ -1,15 +1,17 @@
 #!/usr/bin/env sh
 
 packages=(
-  minimap
-  git-plus
-  linter
-  editorconfig
-  project-manager
   atom-beautify
   docblockr
-  sort-lines
+  editorconfig
+  emmet
+  git-plus
   language-haml
+  linter
+  linter-eslint
+  minimap
+  project-manager
+  sort-lines
 )
 
 for package in "${packages[@]}"; do

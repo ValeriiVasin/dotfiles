@@ -1,19 +1,21 @@
 #!/usr/bin/env sh
 
 packages=(
-  n
+  browserify
+  db-migrate
   eslint
   grunt-cli
   gulp
+  imageoptim-cli
+  jasmine
   jscs
   jshint
+  karma-cli
   live-server
-  pm2
-  browserify
-  db-migrate
-  typescript
-  jasmine
+  n
   npm-check-updates
+  pm2
+  typescript
 )
 
 echo "Installing globally available npm packages..."
