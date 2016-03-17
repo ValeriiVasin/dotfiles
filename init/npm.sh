@@ -15,6 +15,7 @@ packages=(
   n
   npm-check-updates
   pm2
+  trymodule
   typescript
 )
 
