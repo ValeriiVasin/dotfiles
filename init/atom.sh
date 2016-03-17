@@ -2,6 +2,7 @@
 
 packages=(
   atom-beautify
+  atom-typescript
   docblockr
   editorconfig
   emmet
@@ -11,6 +12,7 @@ packages=(
   linter-eslint
   minimap
   project-manager
+  react
   sort-lines
 )
 
