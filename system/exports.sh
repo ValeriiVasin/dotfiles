@@ -1,5 +1,5 @@
 function _osx_exports() {
-  [[ -r "$HOME/osx.env" ]] && source $HOME/osx.env
+  [[ -r "$HOME/osx.env" ]] && . $HOME/osx.env
   export NODE_ENV=development
   export EDITOR="atom"
   export DROPBOX_FOLDER="$HOME/Dropbox"
@@ -12,14 +12,14 @@ function _osx_exports() {
 }
 
 function _linux_exports() {
-  [[ -r "$HOME/linux.env" ]] && source $HOME/osx.env
+  [[ -r "$HOME/linux.env" ]] && . $HOME/osx.env
   export NODE_ENV=production
 }
 
 function _shared_exports() {
-  [[ -r "$HOME/shared.env" ]] && source $HOME/shared.env
+  [[ -r "$HOME/shared.env" ]] && . $HOME/shared.env
 
-  export DOTFILES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+  export DOTFILES_FOLDER="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
   export PATH="$DOTFILES_FOLDER/bin:$PATH"
 
   export ARCHFLAGS="-arch x86_64"

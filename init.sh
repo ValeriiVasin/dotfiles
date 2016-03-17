@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-CURRENT_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+CURRENT_FOLDER="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # use exports
 . $CURRENT_FOLDER/system/exports.sh

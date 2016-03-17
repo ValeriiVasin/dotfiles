@@ -1,5 +1,7 @@
+#!/usr/bin/env sh
+
 for file in $HOME/dotfiles/system/*; do
-    [ -r "$file" ] && source "$file"
+    [ -r "$file" ] && . $file
 done
 unset file
 
