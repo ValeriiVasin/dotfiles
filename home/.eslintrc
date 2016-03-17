@@ -6,8 +6,12 @@
         "jquery": true,
         "browser": true
     },
-    "globals": {
-        "_": false,
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
     },
     // 0 - allowed
     // 1 - warning
@@ -86,7 +90,7 @@
         "no-spaced-func": 2,
         "no-shadow-restricted-names": 2,
         // Disallow javascript: URLs
-        "no-script-url": 2,
+        "no-script-url": 0,
         // Disallow assignment in return statement
         "no-return-assign": [2, "always"],
 
