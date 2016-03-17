@@ -3,7 +3,7 @@
 CURRENT_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
 # use exports
-source $CURRENT_FOLDER/system/exports.sh
+. $CURRENT_FOLDER/system/exports.sh
 
 function _init_sublime() {
   echo "Linking sublime packages"
@@ -15,15 +15,15 @@ function _init_sublime() {
 }
 
 function _init_npm() {
-  source $DOTFILES_FOLDER/init/npm.sh
+  . $DOTFILES_FOLDER/init/npm.sh
 }
 
 function _init_atom() {
-  source $DOTFILES_FOLDER/init/atom.sh
+  . $DOTFILES_FOLDER/init/atom.sh
 }
 
 function _init_brew() {
-  source $DOTFILES_FOLDER/init/brew.sh
+  . $DOTFILES_FOLDER/init/brew.sh
 }
 
 function _init_links() {
