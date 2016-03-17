@@ -1,3 +1,10 @@
+# Private env variables
+[[ -r "$HOME/shared.env" ]] && source $HOME/shared.env
+[[ -r "$HOME/osx.env" ]] && source $HOME/osx.env
+
+export NODE_ENV=development
+export EDITOR="atom"
+
 export DOTFILES_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 export DROPBOX_FOLDER="$HOME/Dropbox"
 export PROJECTS_FOLDER="$HOME/Projects"
@@ -18,11 +25,6 @@ export DOCKER_TLS_VERIFY=1
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-# favorite editor
-export EDITOR="atom"
-
 # Prefer US English and use UTF-8
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
-
-export NODE_ENV=development
