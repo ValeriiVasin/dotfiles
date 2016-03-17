@@ -22,17 +22,6 @@ rm -r Packages
 ln -s "$DROPBOX_FOLDER/Shared/SublimeText3/Installed Packages"
 ln -s "$DROPBOX_FOLDER/Shared/SublimeText3/Packages"
 
-# SSH
-mkdir -p $HOME/.ssh
-if [ ! -f "$HOME/.ssh/id_rsa.pub" ]; then
-  echo "SSH key does not exist. Generating it..."
-  ssh-keygen -t rsa -C "valerii.vasin@gmail.com"
-fi
-chmod 600 $HOME/.ssh/*
-chmod 700 $HOME/.ssh
-cd $HOME/.ssh
-ln -sf $DROPBOX_FOLDER/dotfiles/ssh-config $HOME/.ssh/config
-
 # RVM + ruby
 echo 'Installing rvm, ruby and capistrano'
 curl -sSL https://get.rvm.io | bash -s stable
