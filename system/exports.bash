@@ -12,7 +12,7 @@ function _osx_exports() {
 }
 
 function _linux_exports() {
-  [[ -r "$HOME/linux.env" ]] && . $HOME/osx.env
+  [[ -r "$HOME/linux.env" ]] && . $HOME/linux.env
   export NODE_ENV=production
 }
 
