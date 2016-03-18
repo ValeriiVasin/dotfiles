@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 CURRENT_FOLDER="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # use exports
-. $CURRENT_FOLDER/system/exports.sh
+. $CURRENT_FOLDER/system/exports.bash
 
 function _init_sublime() {
   echo "Linking sublime packages"
@@ -15,15 +15,15 @@ function _init_sublime() {
 }
 
 function _init_npm() {
-  . $DOTFILES_FOLDER/init/npm.sh
+  . $DOTFILES_FOLDER/init/npm.bash
 }
 
 function _init_atom() {
-  . $DOTFILES_FOLDER/init/atom.sh
+  . $DOTFILES_FOLDER/init/atom.bash
 }
 
 function _init_brew() {
-  . $DOTFILES_FOLDER/init/brew.sh
+  . $DOTFILES_FOLDER/init/brew.bash
 }
 
 function _init_links() {

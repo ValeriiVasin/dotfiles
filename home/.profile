@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 for file in $HOME/dotfiles/system/*; do
     [ -r "$file" ] && . $file
