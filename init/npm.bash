@@ -13,9 +13,13 @@ packages=(
   karma-cli
   live-server
   n
+  npm-check
   npm-check-updates
   pm2
+  stylint
+  stylus
   trymodule
+  tslint
   typescript
 )
 

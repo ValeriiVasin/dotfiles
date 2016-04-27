@@ -12,6 +12,8 @@ packages=(
   git
   node
   openssl
+  postgresql
+  redis
   ssh-copy-id
   tree
   wget

@@ -35,3 +35,5 @@
 --type-set=json=.json
 --type-add=twig=.twig
 --type-set=tmpl=.tmpl
+--type-set=js=.js,ts
+--type-set=styl=.styl

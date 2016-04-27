@@ -3,6 +3,7 @@
 packages=(
   atom-beautify
   atom-typescript
+  autocomplete-paths
   docblockr
   editorconfig
   emmet
@@ -10,10 +11,12 @@ packages=(
   language-haml
   linter
   linter-eslint
+  linter-tslint
   minimap
   project-manager
   react
   sort-lines
+  linter-stylint
 )
 
 for package in "${packages[@]}"; do
