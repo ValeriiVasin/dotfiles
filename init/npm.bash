@@ -21,6 +21,7 @@ packages=(
   trymodule
   tslint
   typescript
+  concurrently
 )
 
 echo "Installing globally available npm packages..."
