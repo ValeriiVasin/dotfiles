@@ -19,6 +19,8 @@ function _init_npm() {
 }
 
 function _init_atom() {
+  rm -rf $HOME/.atom;
+  ln -s $DROPBOX_FOLDER/Shared/.atom $HOME/.atom
   . $DOTFILES_FOLDER/init/atom.bash
 }
 
