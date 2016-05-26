@@ -8,15 +8,17 @@ packages=(
   editorconfig
   emmet
   git-plus
+  highlight-selected
   language-haml
   linter
   linter-eslint
+  linter-jsonlint
+  linter-stylint
   linter-tslint
   minimap
   project-manager
   react
   sort-lines
-  linter-stylint
 )
 
 for package in "${packages[@]}"; do
