@@ -97,4 +97,21 @@ dotfiles() {
   cd $DOTFILES_FOLDER;
 }
 
+# Weather information
+#
+# @example
+#   weather; # print information about default city weather
+#   weather amsterdam; # print info about amsterdam weather
+#   weather berlin amsterdam; # print info about berlin and amsterdam weather;
+weather() {
+  cities=${*-berlin}
+
+  for city in $cities
+  do
+    echo "[$city]"
+    finger o:$city@graph.no | tail -n 1
+    echo;
+  done
+}
+
 export -f server;
