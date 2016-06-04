@@ -19,6 +19,7 @@ packages=(
   project-manager
   react
   sort-lines
+  stylus
 )
 
 for package in "${packages[@]}"; do
