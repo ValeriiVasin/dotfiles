@@ -20,6 +20,8 @@ packages=(
   react
   sort-lines
   stylus
+  hyperclick
+  js-hyperclick
 )
 
 for package in "${packages[@]}"; do
