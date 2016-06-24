@@ -62,6 +62,7 @@ casks=(
   utorrent
   virtualbox
   vlc
+  visual-studio-code
 )
 
 for cask in "${casks[@]}"; do
