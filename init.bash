@@ -14,6 +14,21 @@ function _init_sublime() {
   ln -s "$DROPBOX_FOLDER/Shared/SublimeText3/Packages"
 }
 
+function _init_vscode() {
+  echo "Linking VSCode packages"
+
+  vscode_extensions="$HOME/.vscode"
+  vscode_extensions_dropbox="$DROPBOX_FOLDER/Shared/.vscode"
+  vscode_settings=$HOME/Library/Application\ Support/Code/User
+  vscode_settings_dropbox="$DROPBOX_FOLDER/Shared/VSCodeUser"
+
+  rm -rf "$vscode_extensions"
+  ln -sf "$vscode_extensions_dropbox" "$vscode_extensions"
+
+  rm -rf "$vscode_settings"
+  ln -sf "$vscode_settings_dropbox" "$vscode_settings"
+}
+
 function _init_npm() {
   . $DOTFILES_FOLDER/init/npm.bash
 }
@@ -53,9 +68,10 @@ function _init_all() {
   _init_atom;
   _init_rvm;
   _init_sublime;
+  _init_vscode;
 }
 
-# Do stuff
+# $DOTFILES_FOLDER/init.bash vscode
 action="$1"
 case "$action" in
   links)
@@ -72,6 +88,9 @@ case "$action" in
   ;;
   sublime)
     _init_sublime;
+  ;;
+  vscode)
+    _init_vscode;
   ;;
   *)
     _init_all;
