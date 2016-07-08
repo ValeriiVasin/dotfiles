@@ -97,6 +97,12 @@ dotfiles() {
   cd $DOTFILES_FOLDER;
 }
 
+git-rm-stale() {
+  for branch in $(git branch --merged | grep -v master); do
+    git branch -d $branch;
+  done
+}
+
 # Weather information
 #
 # @example
