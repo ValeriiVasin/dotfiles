@@ -29,7 +29,12 @@ function _shared_exports() {
   export HISTFILESIZE=$HISTSIZE
   export HISTCONTROL=ignoredups
 
-  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+  # Add RVM to PATH for scripting
+  export PATH="$PATH:$HOME/.rvm/bin"
+
+  # Solves completion of commands separated by colon
+  # e.g. npm run test:unit
+  export COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 
   # Prefer US English and use UTF-8
   export LC_ALL="en_US.UTF-8"
