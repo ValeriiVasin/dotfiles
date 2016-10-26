@@ -17,6 +17,7 @@ packages=(
   ssh-copy-id
   tree
   wget
+  yarn
   youtube-dl
 )
 

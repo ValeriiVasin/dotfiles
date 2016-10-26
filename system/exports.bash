@@ -9,6 +9,9 @@ function _osx_exports() {
   export DOCKER_HOST=tcp://192.168.59.103:2376
   export DOCKER_MACHINE_NAME=default
   export DOCKER_TLS_VERIFY=1
+
+  # yarn
+  export PATH="$PATH:$HOME/.yarn/bin"
 }
 
 function _linux_exports() {
