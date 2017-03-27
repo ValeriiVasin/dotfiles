@@ -9,6 +9,7 @@ brew upgrade --all
 packages=(
   ack
   bash-completion
+  colordiff
   git
   node
   openssl

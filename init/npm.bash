@@ -20,8 +20,9 @@ packages=(
   stylus
   trymodule
   tslint
-  typescript
   concurrently
+  react-create-app
+  react-scripts-ts
 )
 
 echo "Installing globally available npm packages..."
