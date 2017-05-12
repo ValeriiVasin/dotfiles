@@ -120,4 +120,9 @@ weather() {
   done
 }
 
+yarn-upgrade() {
+  brew rm yarn;
+  brew install yarn --ignore-dependencies;
+}
+
 export -f server;
