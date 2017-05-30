@@ -14,3 +14,7 @@ alias e=$EDITOR
 
 # own custom aliases
 alias hosts='$EDITOR /etc/hosts'
+
+# execute local npm binary
+# => npx jest
+alias npx='PATH=$(npm bin):$PATH'
