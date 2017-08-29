@@ -125,4 +125,8 @@ yarn-upgrade() {
   brew install yarn --ignore-dependencies;
 }
 
+jira() {
+  $DOTFILES_FOLDER/bin/jira $@
+}
+
 export -f server;

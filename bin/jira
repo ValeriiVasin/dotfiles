@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const exec = require('child_process').execSync;
+const ISSUE_REGEXP = /\b\w+\-\d+\b/;
+const DEFAULT_JIRA_PROJECT = process.env.DEFAULT_JIRA_PROJECT || 'MINSKY';
+
+function issueFromCLI() {
+  const issue = process.argv[2];
+
+  if (!issue) {
+    return;
+  }
+
+  if (/^\d+$/.test(issue)) {
+    return `${DEFAULT_JIRA_PROJECT}-${issue}`;
+  }
+
+  if (ISSUE_REGEXP.test(issue)) {
+    return issue;
+  }
+}
+
+function issueFromGitBranch() {
+  const branch = exec('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' });
+  const regexp = /\b\w+\-\d+\b/;
+  const match = branch.match(regexp);
+
+  if (!match) {
+    return;
+  }
+
+  return match[0];
+}
+
+const issue = issueFromCLI() || issueFromGitBranch();
+
+if (!issue) {
+  console.log('Can not determine what issue to open. Please provide it as an argument');
+  process.exit(0);
+}
+
+const url = `https://jira.groupondev.com/browse/${issue}`;
+exec(`open ${url}`);
