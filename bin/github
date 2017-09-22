@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const exec = require('child_process').execSync;
+const remote = exec('git config --get remote.origin.url', { encoding: 'utf8' });
+const adjustedRemote = remote
+  .replace(':', '/')
+  .replace('.git', '')
+  .replace('git@', 'https://');
+
+console.log(adjustedRemote);
+exec(`open ${adjustedRemote}`);

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-env node */
+/* eslint-disable no-console */
 const exec = require('child_process').execSync;
 const ISSUE_REGEXP = /\b\w+\-\d+\b/;
 const DEFAULT_JIRA_PROJECT = process.env.DEFAULT_JIRA_PROJECT || 'MINSKY';
