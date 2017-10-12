@@ -5,7 +5,24 @@ const remote = exec('git config --get remote.origin.url', { encoding: 'utf8' });
 const adjustedRemote = remote
   .replace(':', '/')
   .replace('.git', '')
-  .replace('git@', 'https://');
+  .replace('git@', 'https://')
+  .trim();
+
+const isPullRequestMode = process.argv.indexOf('pr') !== -1;
+
+if (isPullRequestMode) {
+  const branch = exec('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).trim();
+
+  if (branch === 'master') {
+    throw 'PR command should be executed from feature branch';
+  }
+
+  const prRemote = `${adjustedRemote}/compare/${branch}?expand=1`;
+
+  console.log(prRemote);
+  exec(`open ${prRemote}`);
+  process.exit(0);
+}
 
 console.log(adjustedRemote);
 exec(`open ${adjustedRemote}`);
