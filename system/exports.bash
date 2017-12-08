@@ -5,13 +5,8 @@ function _osx_exports() {
   export DROPBOX_FOLDER="$HOME/Dropbox"
   export PROJECTS_FOLDER="$HOME/Projects"
 
-  # Docker
-  export DOCKER_HOST=tcp://192.168.59.103:2376
-  export DOCKER_MACHINE_NAME=default
-  export DOCKER_TLS_VERIFY=1
-
   # yarn
-  export PATH="$PATH:$HOME/.yarn/bin"
+  export PATH="$PATH:$HOME/.yarn/bin:/usr/local/sbin"
 }
 
 function _linux_exports() {

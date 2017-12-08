@@ -25,6 +25,7 @@
 --ignore-dir=bower_components/
 --ignore-dir=drupal-data
 --ignore-dir=vendor/
+--ignore-dir=public
 
 #make sure ack knows how to search common filetypes used in node.js projects
 --ignore-dir=node_modules

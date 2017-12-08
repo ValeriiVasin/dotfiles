@@ -3,25 +3,6 @@ function md() {
   mkdir -p "$1" && cd "$1"
 }
 
-upload() {
-  node ~/Projects/uploader/index.js $@
-}
-
-dock() {
-  case "$1" in
-    stopall)
-      docker stop $(docker ps -q)
-      ;;
-    cleanup)
-      docker rm $(docker ps -a -q)
-      docker rmi $(docker images -q --filter "dangling=true")
-      ;;
-    *)
-      echo "Usage: dock {stopall|cleanup}"
-      ;;
-  esac
-}
-
 refresh() {
   source $HOME/.profile;
 }
@@ -100,23 +81,6 @@ dotfiles() {
 git-rm-stale() {
   for branch in $(git branch --merged | grep -v master); do
     git branch -d $branch;
-  done
-}
-
-# Weather information
-#
-# @example
-#   weather; # print information about default city weather
-#   weather amsterdam; # print info about amsterdam weather
-#   weather berlin amsterdam; # print info about berlin and amsterdam weather;
-weather() {
-  cities=${*-berlin}
-
-  for city in $cities
-  do
-    echo "[$city]"
-    finger o:$city@graph.no | tail -n 1
-    echo;
   done
 }
 

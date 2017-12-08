@@ -12,14 +12,15 @@ function _shared_bootstrap() {
 
 function _osx_bootstrap() {
   # This loads RVM
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && . $HOME/.rvm/scripts/rvm
+  # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . $HOME/.rvm/scripts/rvm
 
   # Bash completion
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 
-  eval $(docker-machine env default)
+  # add ssh identities for Sierra+
+  ssh-add -K $(find ~/.ssh -name 'id_rsa*' -not -name '*pub')
 }
 
 function _linux_bootstrap() {
@@ -39,3 +40,6 @@ case "$OSTYPE" in
 esac
 
 _shared_bootstrap;
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
