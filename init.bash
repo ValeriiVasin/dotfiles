@@ -71,7 +71,7 @@ function _init_all() {
   _init_vscode;
 }
 
-# $DOTFILES_FOLDER/init.bash vscode
+# $DOTFILES_FOLDER/init.bash links
 action="$1"
 case "$action" in
   links)
