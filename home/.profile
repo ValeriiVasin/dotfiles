@@ -20,7 +20,7 @@ function _osx_bootstrap() {
   fi
 
   # add ssh identities for Sierra+
-  ssh-add -K $(find ~/.ssh -name 'id_rsa*' -not -name '*pub')
+  ssh-add -q -K $(find ~/.ssh -name 'id_rsa*' -not -name '*pub')
 }
 
 function _linux_bootstrap() {
