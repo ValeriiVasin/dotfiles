@@ -19,3 +19,11 @@ alias hosts='$EDITOR /etc/hosts'
 # => npx jest
 alias npx='PATH=$(npm bin):$PATH'
 alias gh='github'
+
+alias auth="cd $HOME/Projects/merchant-center-auth"
+alias minsky="cd $HOME/Projects/merchant-center-minsky-itier"
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias config="cd $HOME/Projects/itier-bootstrap; make config; cd -;"
+alias record="curl http://www.radiorecord.ru/rss.xml | grep mp3"
