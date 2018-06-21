@@ -2,12 +2,24 @@
 
 const exec = require('child_process').execSync;
 const remote = exec('git config --get remote.origin.url', { encoding: 'utf8' });
-const adjustedRemote = remote
-  .replace(':', '/')
-  .replace('.git', '')
-  .replace('git@', 'https://')
-  .trim();
 
+function getGithubRepoUrl(remote) {
+  // git+ssh://git@github.groupondev.com/merchant-experience/grpn-mx-components
+  if (remote.startsWith('git+ssh://git@')) {
+    return remote.replace('git+ssh://git@', 'https://');
+  }
+
+  // git@github.groupondev.com:sox-inscope/merchant-center-minsky-itier.git
+  if (remote.startsWith('git@')) {
+    return remote
+    .replace(':', '/')
+    .replace('.git', '')
+    .replace('git@', 'https://')
+    .trim();
+  }
+}
+
+const repoUrl = getGithubRepoUrl(remote);
 const isPullRequestMode = process.argv.indexOf('pr') !== -1;
 
 if (isPullRequestMode) {
@@ -17,12 +29,12 @@ if (isPullRequestMode) {
     throw 'PR command should be executed from feature branch';
   }
 
-  const prRemote = `${adjustedRemote}/compare/${branch}?expand=1`;
+  const prRemote = `${repoUrl}/compare/${branch}?expand=1`;
 
   console.log(prRemote);
   exec(`open ${prRemote}`);
   process.exit(0);
 }
 
-console.log(adjustedRemote);
-exec(`open ${adjustedRemote}`);
+console.log(repoUrl);
+exec(`open ${repoUrl}`);
