@@ -20,6 +20,8 @@ packages=(
   wget
   yarn
   youtube-dl
+  fzf
+  diff-so-fancy
 )
 
 # @TODO check if already installed

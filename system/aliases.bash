@@ -27,3 +27,6 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias config="cd $HOME/Projects/itier-bootstrap; make config; cd -;"
 alias record="curl http://www.radiorecord.ru/rss.xml | grep mp3"
+
+alias grant="ssh login.snc1 login"
+alias revoke="ssh login.snc1 login -d"
