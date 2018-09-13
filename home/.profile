@@ -7,7 +7,7 @@ function _shared_bootstrap() {
   unset file
 
   GIT_PS1_SHOWDIRTYSTATE=true
-  PS1='\[\033[1;30m\][\t] \[\033[01;32m\]\u\[\033[00m\]:\[\033[01;33m\]\w\[\033[00m\]\[\033[01;31m\]\n$(__git_ps1 "{%s}")\[\033[00m\]\$ '
+  PS1='\[\033[1;30m\][\t] \[\033[01;32m\]\u\[\033[00m\]:\[\033[01;33m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1 " {%s}")\[\033[00m\]\n\$ '
 }
 
 function _osx_bootstrap() {
