@@ -93,4 +93,14 @@ jira() {
   $DOTFILES_FOLDER/bin/jira $@
 }
 
+npmrc() {
+  if [ -f $HOME/.npmrc ]; then
+    echo "moving .npmrc => .npmrc-groupon"
+    mv $HOME/.npmrc $HOME/.npmrc-groupon
+  else
+    echo "moving .npmrc-groupon => .npmrc"
+    mv $HOME/.npmrc-groupon $HOME/.npmrc
+  fi;
+}
+
 export -f server;
