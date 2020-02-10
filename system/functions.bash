@@ -4,7 +4,7 @@ function md() {
 }
 
 refresh() {
-  source $HOME/.profile;
+  source $HOME/.profile
 }
 
 # find shorthand
@@ -13,8 +13,8 @@ f() {
 }
 
 # cd into whatever is the forefront Finder window.
-cdf() {  # short for cdfinder
-  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+cdf() { # short for cdfinder
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
@@ -33,11 +33,11 @@ network_restart() {
 
 # Compare original and gzipped file size
 function gz() {
-  local origsize=$(wc -c < "$1");
-  local gzipsize=$(gzip -c "$1" | wc -c);
-  local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
-  printf "orig: %d bytes\n" "$origsize";
-  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
+  local origsize=$(wc -c <"$1")
+  local gzipsize=$(gzip -c "$1" | wc -c)
+  local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
+  printf "orig: %d bytes\n" "$origsize"
+  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
 # supposed to be used in conjunction with ack
@@ -46,14 +46,14 @@ function gz() {
 #   ack headerV1NavigationIconSize -l | replace_text headerV1NavigationIconSize membershipIconSizeMedium
 replace_text() {
   while read filename; do
-    replace_expression="s/$1/$2/g";
+    replace_expression="s/$1/$2/g"
     sed -i '' "$replace_expression" $filename
   done
 }
 
 # Open project folder
 project() {
-  cd "$PROJECTS_FOLDER/$1";
+  cd "$PROJECTS_FOLDER/$1"
 }
 
 # connect to server and open project directory
@@ -65,28 +65,28 @@ project() {
 # - Open remote directory of <current folder name> project
 #   project_remote
 project_remote() {
-  local project="$1";
+  local project="$1"
 
   if [ -z "$project" ]; then
-    project="$(basename $(pwd))";
+    project="$(basename $(pwd))"
   fi
 
-  ssh do -t "cd /var/www/$project/current; bash --login";
+  ssh do -t "cd /var/www/$project/current; bash --login"
 }
 
 dotfiles() {
-  cd $DOTFILES_FOLDER;
+  cd $DOTFILES_FOLDER
 }
 
 git-rm-stale() {
   for branch in $(git branch --merged | grep -v master); do
-    git branch -d $branch;
+    git branch -d $branch
   done
 }
 
 yarn-upgrade() {
-  brew rm yarn;
-  brew install yarn --ignore-dependencies;
+  brew rm yarn
+  brew install yarn --ignore-dependencies
 }
 
 jira() {
@@ -100,7 +100,17 @@ npmrc() {
   else
     echo "moving .npmrc-groupon => .npmrc"
     mv $HOME/.npmrc-groupon $HOME/.npmrc
-  fi;
+  fi
 }
 
-export -f server;
+mouse() {
+  if [ $1 = "home" ]; then
+    echo "configuring mouse for home"
+    osascript $DOTFILES_FOLDER/scripts/mouse.scpt 7
+  else
+    echo "configuring mouse for office"
+    osascript $DOTFILES_FOLDER/scripts/mouse.scpt 5
+  fi
+}
+
+export -f server
