@@ -16,8 +16,6 @@ alias e=$EDITOR
 alias hosts='$EDITOR /etc/hosts'
 
 # execute local npm binary
-# => npx jest
-alias npx='PATH=$(npm bin):$PATH'
 alias gh='github'
 
 alias auth="cd $HOME/Projects/merchant-center-auth"
