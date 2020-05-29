@@ -49,7 +49,7 @@ alias grant="ssh login.snc1 login "
 alias revoke="ssh login.snc1 login -d"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
