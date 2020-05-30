@@ -13,8 +13,11 @@ function _init_vscode() {
   vscode_settings=$HOME/Library/Application\ Support/Code/User
   vscode_settings_dropbox="$DROPBOX_FOLDER/Shared/VSCodeUser"
 
-  rm -rf "$vscode_extensions"
-  ln -sf "$vscode_extensions_dropbox" "$vscode_extensions"
+  # vscode extension were generating to much changes
+  # and were disabled by me to store in dropbox 
+  # ---
+  # rm -rf "$vscode_extensions"
+  # ln -sf "$vscode_extensions_dropbox" "$vscode_extensions"
 
   rm -rf "$vscode_settings"
   ln -sf "$vscode_settings_dropbox" "$vscode_settings"
