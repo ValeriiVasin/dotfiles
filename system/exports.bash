@@ -1,7 +1,7 @@
 function _osx_exports() {
   [[ -r "$HOME/osx.env" ]] && . $HOME/osx.env
   export NODE_ENV=development
-  export EDITOR="atom"
+  export EDITOR="code"
   export DROPBOX_FOLDER="$HOME/Dropbox"
   export PROJECTS_FOLDER="$HOME/Projects"
 

@@ -11,10 +11,7 @@ packages=(
   bash-completion
   colordiff
   git
-  node
   openssl
-  postgresql
-  redis
   ssh-copy-id
   tree
   wget
@@ -26,7 +23,7 @@ packages=(
 
 # @TODO check if already installed
 echo "Installing brew"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew update
 
 for package in "${packages[@]}"; do

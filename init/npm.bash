@@ -1,28 +1,7 @@
 #!/usr/bin/env bash
 
 packages=(
-  browserify
-  db-migrate
-  eslint
-  grunt-cli
-  gulp
-  imageoptim-cli
-  jasmine
-  jscs
-  jshint
-  karma-cli
-  live-server
-  n
-  npm-check
   npm-check-updates
-  pm2
-  stylint
-  stylus
-  trymodule
-  tslint
-  concurrently
-  react-create-app
-  react-scripts-ts
 )
 
 echo "Installing globally available npm packages..."

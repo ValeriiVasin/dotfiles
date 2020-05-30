@@ -11,17 +11,12 @@ function _shared_bootstrap() {
 }
 
 function _osx_bootstrap() {
-  # This loads RVM
-  # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . $HOME/.rvm/scripts/rvm
-
   # Bash completion
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 
-  # add ssh identities for Sierra+
-  # ssh-add -q -K $HOME/.ssh/id_rsa
-  # ssh-add -q -K $HOME/.ssh/id_rsa.abz
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 }
 
 function _linux_bootstrap() {
@@ -44,12 +39,6 @@ _shared_bootstrap;
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-alias grant="ssh login.snc1 login "
-alias revoke="ssh login.snc1 login -d"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

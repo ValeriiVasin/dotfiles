@@ -5,15 +5,6 @@ CURRENT_FOLDER="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # use exports
 . $CURRENT_FOLDER/system/exports.bash
 
-function _init_sublime() {
-  echo "Linking sublime packages"
-  cd "$HOME/Library/Application Support/Sublime Text 3"
-  rm -r Installed\ Packages
-  rm -r Packages
-  ln -s "$DROPBOX_FOLDER/Shared/SublimeText3/Installed Packages"
-  ln -s "$DROPBOX_FOLDER/Shared/SublimeText3/Packages"
-}
-
 function _init_vscode() {
   echo "Linking VSCode packages"
 
@@ -31,12 +22,6 @@ function _init_vscode() {
 
 function _init_npm() {
   . $DOTFILES_FOLDER/init/npm.bash
-}
-
-function _init_atom() {
-  rm -rf $HOME/.atom;
-  ln -s $DROPBOX_FOLDER/Shared/.atom $HOME/.atom
-  . $DOTFILES_FOLDER/init/atom.bash
 }
 
 function _init_brew() {
@@ -65,9 +50,7 @@ function _init_all() {
   _init_links;
   _init_brew;
   _init_npm;
-  _init_atom;
   _init_rvm;
-  _init_sublime;
   _init_vscode;
 }
 
@@ -80,14 +63,8 @@ case "$action" in
   npm)
     _init_npm;
   ;;
-  atom)
-    _init_atom;
-  ;;
   rvm)
     _init_rvm;
-  ;;
-  sublime)
-    _init_sublime;
   ;;
   vscode)
     _init_vscode;
