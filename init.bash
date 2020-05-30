@@ -46,14 +46,6 @@ function _init_rvm() {
   gem install capistrano
 }
 
-function _init_all() {
-  _init_links;
-  _init_brew;
-  _init_npm;
-  _init_rvm;
-  _init_vscode;
-}
-
 # $DOTFILES_FOLDER/init.bash links
 action="$1"
 case "$action" in
@@ -66,10 +58,15 @@ case "$action" in
   rvm)
     _init_rvm;
   ;;
+  brew)
+    _init_brew;
+  ;;
   vscode)
     _init_vscode;
   ;;
   *)
-    _init_all;
+    _init_links;
+    _init_brew;
+    _init_npm;
   ;;
 esac

@@ -10,15 +10,16 @@ packages=(
   ack
   bash-completion
   colordiff
+  diff-so-fancy
+  fzf
   git
+  node
   openssl
   ssh-copy-id
   tree
   wget
   yarn
   youtube-dl
-  fzf
-  diff-so-fancy
 )
 
 # @TODO check if already installed
