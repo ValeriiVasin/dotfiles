@@ -113,4 +113,8 @@ mouse() {
   fi
 }
 
+check-types() {
+  npx tsc --noEmit
+}
+
 export -f server
