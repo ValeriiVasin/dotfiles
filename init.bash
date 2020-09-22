@@ -5,24 +5,6 @@ CURRENT_FOLDER="$(CDPATH= cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # use exports
 . $CURRENT_FOLDER/system/exports.bash
 
-function _init_vscode() {
-  echo "Linking VSCode packages"
-
-  vscode_extensions="$HOME/.vscode"
-  vscode_extensions_dropbox="$DROPBOX_FOLDER/Shared/.vscode"
-  vscode_settings=$HOME/Library/Application\ Support/Code/User
-  vscode_settings_dropbox="$DROPBOX_FOLDER/Shared/VSCodeUser"
-
-  # vscode extension were generating to much changes
-  # and were disabled by me to store in dropbox 
-  # ---
-  # rm -rf "$vscode_extensions"
-  # ln -sf "$vscode_extensions_dropbox" "$vscode_extensions"
-
-  rm -rf "$vscode_settings"
-  ln -sf "$vscode_settings_dropbox" "$vscode_settings"
-}
-
 function _init_npm() {
   . $DOTFILES_FOLDER/init/npm.bash
 }
@@ -52,24 +34,21 @@ function _init_rvm() {
 # $DOTFILES_FOLDER/init.bash links
 action="$1"
 case "$action" in
-  links)
-    _init_links;
+links)
+  _init_links
   ;;
-  npm)
-    _init_npm;
+npm)
+  _init_npm
   ;;
-  rvm)
-    _init_rvm;
+rvm)
+  _init_rvm
   ;;
-  brew)
-    _init_brew;
+brew)
+  _init_brew
   ;;
-  vscode)
-    _init_vscode;
-  ;;
-  *)
-    _init_links;
-    _init_brew;
-    _init_npm;
+*)
+  _init_links
+  _init_brew
+  _init_npm
   ;;
 esac
