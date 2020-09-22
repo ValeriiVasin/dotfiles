@@ -94,13 +94,7 @@ jira() {
 }
 
 npmrc() {
-  if [ -f $HOME/.npmrc ]; then
-    echo "moving .npmrc => .npmrc-groupon"
-    mv $HOME/.npmrc $HOME/.npmrc-groupon
-  else
-    echo "moving .npmrc-groupon => .npmrc"
-    mv $HOME/.npmrc-groupon $HOME/.npmrc
-  fi
+  $DOTFILES_FOLDER/bin/env-toggle
 }
 
 mouse() {

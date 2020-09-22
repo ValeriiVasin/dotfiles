@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+// @ts-check
+
+const path = require('path');
+const fs = require('fs');
+const os = require('os');
+
+const HOME_FOLDER = os.homedir();
+const NPMRC_PATH = path.resolve(HOME_FOLDER, '.npmrc');
+const GIT_CONFIG_PATH = path.resolve(HOME_FOLDER, '.gitconfig');
+
+const COMPANY_EMAIL = 'vvasin@groupon.com';
+const PERSONAL_EMAIL = 'valerii.vasin@gmail.com';
+
+const IS_PERSONAL_CONTEXT = fs
+  .readFileSync(GIT_CONFIG_PATH, 'utf-8')
+  .includes(PERSONAL_EMAIL);
+
+const npmrcCompanyContent = `registry=https://npm.groupondev.com${os.EOL}`;
+
+function toggleNpmrc() {
+  if (IS_PERSONAL_CONTEXT) {
+    console.log('[npmrc] switching to company context...');
+    fs.writeFileSync(NPMRC_PATH, npmrcCompanyContent);
+    return;
+  }
+
+  console.log('[npmrc] switching to personal context...');
+  try {
+    fs.unlinkSync(NPMRC_PATH);
+  } catch {
+    console.log('[error] npmrc config does not exist');
+  }
+}
+
+function toggleGitConfig() {
+  const content = fs.readFileSync(GIT_CONFIG_PATH, 'utf-8');
+
+  if (IS_PERSONAL_CONTEXT) {
+    console.log('[gitconfig] switching to company context...');
+    fs.writeFileSync(
+      GIT_CONFIG_PATH,
+      content.replace(PERSONAL_EMAIL, COMPANY_EMAIL)
+    );
+    return;
+  }
+
+  console.log('[gitconfig] switching to personal context...');
+  fs.writeFileSync(
+    GIT_CONFIG_PATH,
+    content.replace(COMPANY_EMAIL, PERSONAL_EMAIL)
+  );
+}
+
+toggleGitConfig();
+toggleNpmrc();
